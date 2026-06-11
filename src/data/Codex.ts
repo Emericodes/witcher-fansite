@@ -1,4 +1,4 @@
-import type { Character, Monster, WorldMap } from"../types/CodexTypes";
+import type { Character, Monster, WorldMap } from "../types/CodexTypes";
 import GeraltImage from "../assets/images/geraltderive.png";
 import YenneferImage from "../assets/images/yenneferdeVengerberg.png";
 import TrissImage from "../assets/images/TrissMerigold.png";
@@ -61,6 +61,7 @@ export const CharactersData : Character [] = [
     aliases: ["Vesemir", "le mentor", "le sage de Kaer Morhen"],
   },
 ];
+
 export const MonstersData : Monster [] = [
   {
     name: "Strige",
@@ -98,6 +99,7 @@ export const MonstersData : Monster [] = [
     vulnerabilities: ["Argent", "Huile contre draconides", "Aard"],
   },
 ];
+
 export const WorldMapData : WorldMap [] = [
   {
     name: "Royaume de Temeria",
@@ -127,4 +129,4 @@ export const WorldMapData : WorldMap [] = [
     region: "Est",
     notableLocations: ["Dol Blathanna", "Eldberg", "Rinde"],
   },
-];  
+];
