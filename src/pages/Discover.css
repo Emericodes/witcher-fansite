@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+:root {
+  --bg: #0f0f12;
+  --panel: #18181c;
+  --text: #e7e7ea;
+  --muted: #b1b1b8;
+  --accent: #c63f3f;      
+  --accent-2: #7aa3c6;    
+  --border: #2b2b31;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --font-h1-discover: 'Cinzel', serif;
+}
+
+.discover-page {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.discover-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.discover-title-h1 {
+  font-family: var(--font-h1-discover);
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* --- Layout Grid Réparé --- */
+.page-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+@media (max-width: 900px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.synopsis {
+  background: linear-gradient(180deg, rgba(24,24,28,0.95) 0%, rgba(24,24,28,0.75) 100%);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.synopsis h2 {
+  font-family: var(--font-h1-discover);
+  color: #f59e0b;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.synopsis p {
+  font-family: sans-serif;
+  line-height: 1.7;
+  color: #d1d1d6;
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.timeline-container {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+/* --- Liens Interactifs Enluminés --- */
+.character-link {
+  color: var(--accent);
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 1px dashed var(--accent);
+  transition: all 0.2s ease;
+}
+
+.character-link:hover {
+  color: #f59e0b;
+  border-bottom-color: #f59e0b;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* --- Popups --- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.popup-card {
+  background-color: #1c1c21;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 20px 50px var(--shadow);
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+}

@@ -1,0 +1,58 @@
+.character-card {
+  position: relative;
+  width: 99%;              /* 99% de la largeur de la page Discover */
+  max-width: 320px;        /* limite en pixels pour éviter une card trop large */
+  background: var(--panel, #18181c);
+  color: var(--text, #e7e7ea);
+  border: 1px solid var(--border, #2b2b31);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.card-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.50rem;
+}
+
+/* Bouton de fermeture (croix en haut à droite) */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--muted, #b1b1b8);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.close-btn:hover {
+  color: var(--accent, #c63f3f);
+  transform: scale(1.2);
+}
+
+.close-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(198, 63, 63, 0.4);
+  border-radius: 4px;
+}
+
+/* Animation d’apparition */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive : sur mobile, la card prend plus de place */
+@media (max-width: 768px) {
+  .character-card {
+    width: 80%;
+    max-width: none;
+  }
+}

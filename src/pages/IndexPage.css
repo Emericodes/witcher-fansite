@@ -1,0 +1,125 @@
+/* --- Conteneur Principal (Strictement bloqué sur un écran) --- */
+.witcher-screen-container {
+  position: relative !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  overflow: hidden !important;
+  background-color: #050507 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Calques d'effets visuels */
+.witcher-fx-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.witcher-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* --- Layout du Milieu (Layout horizontal asymétrique) --- */
+.witcher-middle-layout {
+  position: absolute;
+  top: 35vh; /* Aligné avec le milieu/haut de ton château */
+  left: 6%;
+  right: 6%;
+  z-index: 10; /* Passe devant les éclairs et la pluie */
+  display: flex;
+  justify-content: space-between; /* Titre à gauche, Bouton à droite */
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  pointer-events: auto; /* Permet le clic sur le bouton */
+}
+
+/* Bloc de gauche (Texte) */
+.witcher-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 55%;
+}
+
+.witcher-main-title {
+  font-family: 'Cinzel', serif !important;
+  font-size: clamp(2.5rem, 5.5vw, 4.8rem) !important;
+  font-weight: 700;
+  letter-spacing: 0.2em !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95) !important;
+  line-height: 1.1;
+}
+
+.witcher-sub-title {
+  font-family: ui-serif, Georgia, serif !important;
+  font-size: clamp(0.85rem, 1.2vw, 1.2rem) !important;
+  font-weight: 400;
+  letter-spacing: 0.08em !important;
+  color: #b1b1b8 !important;
+  margin: 0 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Bloc de droite (Bouton Découvrir) */
+.witcher-action-group {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 200px;
+}
+
+.witcher-cta-btn {
+  position: relative;
+  z-index: 15 !important; /* Force le bouton au-dessus de tout le reste */
+  font-size: 1.1rem !important;
+  letter-spacing: 0.15em !important;
+  padding: 1rem 3rem !important;
+  cursor: pointer !important;
+  pointer-events: auto !important; /* Rend le bouton cliquable */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.witcher-cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), 0 0 8px rgba(217, 119, 6, 0.4);
+}
+
+/* --- Section Basse (Lecteur Audio) --- */
+.witcher-bottom-layout {
+  position: absolute;
+  bottom: 4vh; /* Ajusté pour coller parfaitement au bas de l'écran */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  z-index: 20;
+}
+
+/* --- Adaptabilité Mobile / Tablettes --- */
+@media (max-width: 850px) {
+  .witcher-middle-layout {
+    top: 20vh;
+    flex-direction: column; /* Aligne le tout au centre en colonne si l'écran est trop étroit */
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .witcher-text-group {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .witcher-action-group {
+    justify-content: center;
+  }
+}
