@@ -1,125 +1,128 @@
-/* --- Conteneur Principal (Strictement bloqué sur un écran) --- */
 .witcher-screen-container {
-  position: relative !important;
-  height: 100vh !important;
-  width: 100vw !important;
-  overflow: hidden !important;
-  background-color: #050507 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px 20px 20px;
   box-sizing: border-box;
+  background-color: #050506;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Calques d'effets visuels */
 .witcher-fx-layer {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
 }
 
-.witcher-vignette-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-}
-
-/* --- Layout du Milieu (Layout horizontal asymétrique) --- */
 .witcher-middle-layout {
-  position: absolute;
-  top: 35vh; /* Aligné avec le milieu/haut de ton château */
-  left: 6%;
-  right: 6%;
-  z-index: 10; /* Passe devant les éclairs et la pluie */
-  display: flex;
-  justify-content: space-between; /* Titre à gauche, Bouton à droite */
-  align-items: center;
-  max-width: 1300px;
-  margin: 0 auto;
-  pointer-events: auto; /* Permet le clic sur le bouton */
-}
-
-/* Bloc de gauche (Texte) */
-.witcher-text-group {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  max-width: 55%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+  flex: 1;
+  text-align: center;
+}
+
+.witcher-text-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .witcher-main-title {
-  font-family: 'Cinzel', serif !important;
-  font-size: clamp(2.5rem, 5.5vw, 4.8rem) !important;
-  font-weight: 700;
-  letter-spacing: 0.2em !important;
-  color: #ffffff !important;
-  margin: 0 !important;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95) !important;
+  font-family: var(--font-title, 'Cinzel', serif);
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+  color: var(--accent-gold, #f59e0b);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95);
   line-height: 1.1;
 }
 
 .witcher-sub-title {
-  font-family: ui-serif, Georgia, serif !important;
-  font-size: clamp(0.85rem, 1.2vw, 1.2rem) !important;
-  font-weight: 400;
-  letter-spacing: 0.08em !important;
-  color: #b1b1b8 !important;
-  margin: 0 !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+  font-family: var(--font-body, inherit);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  color: var(--text-main, rgba(255, 255, 255, 0.8));
+  margin: 0;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-/* Bloc de droite (Bouton Découvrir) */
 .witcher-action-group {
+  position: relative;
+  z-index: 20;
   display: flex;
-  justify-content: flex-end;
-  min-width: 200px;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+  flex-shrink: 0;
 }
 
 .witcher-cta-btn {
-  position: relative;
-  z-index: 15 !important; /* Force le bouton au-dessus de tout le reste */
-  font-size: 1.1rem !important;
-  letter-spacing: 0.15em !important;
-  padding: 1rem 3rem !important;
-  cursor: pointer !important;
-  pointer-events: auto !important; /* Rend le bouton cliquable */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-title, 'Cinzel', serif);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  color: var(--accent-gold, #f59e0b);
+  background-color: rgba(13, 13, 15, 0.85);
+  border: 1px solid var(--accent-gold, #f59e0b);
+  padding: 14px 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 .witcher-cta-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), 0 0 8px rgba(217, 119, 6, 0.4);
+  background-color: var(--accent-gold, #f59e0b);
+  color: #0d0d0f;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+  transform: translateY(-2px);
 }
 
-/* --- Section Basse (Lecteur Audio) --- */
+.witcher-cta-btn:active {
+  transform: translateY(0);
+}
+
 .witcher-bottom-layout {
-  position: absolute;
-  bottom: 4vh; /* Ajusté pour coller parfaitement au bas de l'écran */
-  left: 0;
+  position: relative;
+  z-index: 10;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0 20px;
-  z-index: 20;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-shrink: 0;
 }
 
-/* --- Adaptabilité Mobile / Tablettes --- */
-@media (max-width: 850px) {
-  .witcher-middle-layout {
-    top: 20vh;
-    flex-direction: column; /* Aligne le tout au centre en colonne si l'écran est trop étroit */
-    text-align: center;
-    gap: 3rem;
+@media (min-width: 1024px) {
+  .witcher-screen-container {
+    padding: 60px 8vw 30px 8vw;
   }
-  
+
+  .witcher-middle-layout {
+    align-items: flex-start;
+    text-align: left;
+    justify-content: flex-start;
+    padding-top: 2vh;
+  }
+
   .witcher-text-group {
-    max-width: 100%;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .witcher-action-group {
-    justify-content: center;
+    justify-content: flex-end;
+    padding: 0 0 20px 0;
   }
 }

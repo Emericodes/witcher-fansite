@@ -1,0 +1,20 @@
+:root {
+
+  --bg-dark: #0b0b0d;
+  --panel: #141418;
+  --accent-gold: #d4af37;
+  --accent-red: #c63f3f;
+  --text-main: #e7e7ea;
+  --text-muted: #a1a1aa;
+  
+
+  --font-title: 'Cinzel', serif;
+  --font-body: 'Lora', serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-body);
+}

@@ -1,4 +1,5 @@
-import React, { useState, type JSX } from "react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 import AudioPlayer from "../components/AudioPlayer";
 import CharacterCard from "../components/CharacterCard";
 import type { Character } from "../types/CodexTypes";
@@ -7,10 +8,10 @@ import Navbar from "../components/Navbar";
 import TimeLine from "../components/TimeLine";
 import "../pages/Discover.css";
 
-const Discover: React.FC = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+const Discover = () => {
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
 
-  const highlightCharacters = (text: string): JSX.Element[] => {
+  const highlightCharacters = (text: string): ReactNode[] => {
     const words = text.split(/(\s+)/);
     return words.map((word, index) => {
       const match = CharactersData.find(
@@ -48,7 +49,7 @@ const Discover: React.FC = () => {
 
       <main className="discover-main">
         <h1 className="discover-title-h1">L'histoire de Geralt de Riv</h1>
-        
+
         <div className="page-layout">
           <section className="synopsis">
             <h2>Bienvenue voyageur,</h2>
@@ -71,7 +72,7 @@ const Discover: React.FC = () => {
         )}
       </main>
 
-      <footer style={{ marginTop: "40px", padding: "20px 0" }}>
+      <footer className="discover-footer">
         <AudioPlayer />
       </footer>
     </article>

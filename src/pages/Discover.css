@@ -1,23 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+/* ---------------------------------------------------
+   TYPOGRAPHIE
+--------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:wght@400;500;600&display=swap');
 
 :root {
   --bg: #0f0f12;
   --panel: #18181c;
   --text: #e7e7ea;
   --muted: #b1b1b8;
-  --accent: #c63f3f;      
-  --accent-2: #7aa3c6;    
-  --border: #2b2b31;
+  --accent: #d4af37; /* doré */
+  --accent-hover: #f5d98c;
+  --border: rgba(255, 215, 160, 0.15);
   --shadow: rgba(0, 0, 0, 0.5);
   --font-h1-discover: 'Cinzel', serif;
 }
 
+/* ---------------------------------------------------
+   FOND WITCHER DYNAMIQUE
+--------------------------------------------------- */
 .discover-page {
-  background-color: var(--bg);
+  background: radial-gradient(circle at 50% 20%, #1a1a1d 0%, #0f0f12 70%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
   color: var(--text);
   min-height: 100vh;
 }
 
+/* Grain subtil */
+.discover-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('/textures/grain.png');
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+
+/* Fumée en parallax */
+.discover-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('/textures/smoke.png') center/cover no-repeat;
+  opacity: 0.15;
+  animation: smokeMove 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes smokeMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+/* ---------------------------------------------------
+   STRUCTURE
+--------------------------------------------------- */
 .discover-main {
   max-width: 1200px;
   margin: 0 auto;
@@ -32,7 +71,9 @@
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* --- Layout Grid Réparé --- */
+/* ---------------------------------------------------
+   LAYOUT
+--------------------------------------------------- */
 .page-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -43,56 +84,132 @@
   .page-layout {
     grid-template-columns: 1fr;
   }
+
+  .timeline-container {
+    margin-top: 25px;
+    position: relative;
+    top: 0;
+  }
 }
 
-.synopsis {
-  background: linear-gradient(180deg, rgba(24,24,28,0.95) 0%, rgba(24,24,28,0.75) 100%);
+@media (max-width: 600px) {
+  .discover-title-h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .synopsis {
+    padding: 20px;
+  }
+
+  .synopsis p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
+
+/* ---------------------------------------------------
+   PANNEAUX STYLISÉS (Tome ancien)
+--------------------------------------------------- */
+.synopsis,
+.timeline-container {
+  position: relative;
+  background: rgba(24, 24, 28, 0.85);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 30px;
+  box-shadow:
+    0 0 10px rgba(0,0,0,0.4),
+    inset 0 0 20px rgba(255, 215, 160, 0.05);
+  backdrop-filter: blur(4px);
 }
 
+/* Bordure dorée subtile */
+.synopsis::before,
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #d4af37 0%, #8b6f2f 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  /* Standard mask for broader browser compatibility */
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------
+   SYNOPSIS
+--------------------------------------------------- */
 .synopsis h2 {
   font-family: var(--font-h1-discover);
-  color: #f59e0b;
+  color: #f5d98c;
   margin-top: 0;
   margin-bottom: 20px;
 }
 
 .synopsis p {
-  font-family: sans-serif;
+  font-family: 'Lora', serif;
   line-height: 1.7;
   color: #d1d1d6;
   margin-bottom: 18px;
   text-align: justify;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
 }
 
+.synopsis p:nth-child(2) { animation-delay: 0.1s; }
+.synopsis p:nth-child(3) { animation-delay: 0.2s; }
+.synopsis p:nth-child(4) { animation-delay: 0.3s; }
+.synopsis p:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------
+   TIMELINE
+--------------------------------------------------- */
 .timeline-container {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
   padding: 20px;
   position: sticky;
   top: 20px;
   height: fit-content;
 }
 
-/* --- Liens Interactifs Enluminés --- */
+/* ---------------------------------------------------
+   LIENS PERSONNAGES (Glow doré)
+--------------------------------------------------- */
 .character-link {
   color: var(--accent);
   font-weight: bold;
   cursor: pointer;
   border-bottom: 1px dashed var(--accent);
-  transition: all 0.2s ease;
+  transition: 0.25s ease;
 }
 
 .character-link:hover {
-  color: #f59e0b;
-  border-bottom-color: #f59e0b;
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  color: var(--accent-hover);
+  text-shadow: 0 0 8px rgba(255, 220, 150, 0.6);
+  border-bottom-color: var(--accent-hover);
 }
 
-/* --- Popups --- */
+/* ---------------------------------------------------
+   POPUP PERSONNAGE (Scale + blur)
+--------------------------------------------------- */
 .popup-overlay {
   position: fixed;
   inset: 0;
@@ -101,6 +218,7 @@
   display: grid;
   place-items: center;
   z-index: 1000;
+  animation: fadeOverlay 0.3s ease forwards;
 }
 
 .popup-card {
@@ -111,4 +229,28 @@
   padding: 20px;
   max-width: 500px;
   width: 90%;
+
+  transform: scale(0.85);
+  opacity: 0;
+  animation: popupIn 0.35s ease forwards;
+}
+
+@keyframes fadeOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popupIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------
+   FOOTER
+--------------------------------------------------- */
+.discover-footer {
+  margin-top: 40px;
+  padding: 20px 0;
 }

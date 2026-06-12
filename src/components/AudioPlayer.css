@@ -1,0 +1,199 @@
+.player-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #0d0d0f; 
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 900px; 
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Section Contrôles (Gauche) --- */
+.player-main {
+  flex: 1.5; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.track-info {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.track-title {
+  color: #f59e0b; 
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+}
+
+.track-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* --- Contrôles et Sliders --- */
+.sliders-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.progress-container {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.volume-container {
+  flex: 1; 
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  gap: 8px;
+}
+
+.player-slider {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  accent-color: #f59e0b; 
+  margin-bottom: 5px;
+}
+
+.time-labels {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.5rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.volume-container button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+}
+
+.volume-container button:hover {
+  color: white;
+}
+
+.controls-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.controls-group button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.controls-group button:hover {
+  color: white;
+}
+
+.controls-group .btn-main {
+  background-color: white;
+  color: #18181b;
+  border-radius: 50%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Section Playlist (Droite) --- */
+.player-playlist {
+  flex: 1;
+  background-color: #111113; 
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  display: flex;        
+  flex-direction: column;
+}
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 5px;
+}
+
+.track-list {
+  max-height: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.track-list li {
+  margin-bottom: 4px;
+}
+
+.track-list button {
+  width: 90%;
+  text-align: left;
+  padding: 5px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.track-list button:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.track-list li.active-track button {
+  color: #f59e0b; 
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+
+@media (max-width: 767px) {
+  .player-playlist {
+    display: none; /* Maintenant, ça va fonctionner car c'est lu en dernier ! */
+  }
+  
+  .player-main {
+    padding: 15px; 
+  }
+}
+
+
+@media (min-width: 768px) {
+  .player-wrapper {
+    flex-direction: row;
+    height: 250px; 
+  }
+}
